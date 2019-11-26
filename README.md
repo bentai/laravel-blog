@@ -1,78 +1,95 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# 学习笔记
+### 路由配置没有生效
+ 
+---
+nginx 根目录配置中添加这条匹配
+try_files $uri $uri/ /index.php?$query_string;
+可以隐藏index.php和使隐藏index.php之后的路由生效，自动带上index.php
+        
+         if (!-e $request_filename) {
+                    rewrite ^/(.*)$ /index.php/$1;
+         }
+         
+之前使用这个配置只能识别首页的路由
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## About Laravel
+- php artisan route:cache
+  每次修改路由之后请先清空缓存数据
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+###  单次查询
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- find  first 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+检索单个模型 / 集合
+这些方法返回单个模型实例，而不是返回模型集合：
 
-## Learning Laravel
+-  get
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+laravel里get()得到的是一组数据，first()得到的是一个model数据。
+一个model数据就是一个stdClass，stdClass是一个没有属性和方法的空类
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+###  dd() 函数
 
-## Laravel Sponsors
+   
+    if (!function_exists('dd')) {
+        function dd(...$vars)
+        {
+            foreach ($vars as $v) {
+                VarDumper::dump($v);
+            }
+    
+            die(1);
+        }
+    }
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+在foreach 中使用dd函数时，因为执行一次之后就直接die结束了，所有只会打印当前循环第一次数据，后面的循环直接die
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+###  Model  Eloquent ORM
 
-## Contributing
+- $fillable 白名单
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-  hasOne 一对一关联
 
-## Code of Conduct
+        一对一是最基本的关联关系。例如，一个 User 模型可能关联一个 Phone 模型。为了定义这个关联，我们要在 User 模型中写一个 phone 方法。在 phone 方法内部调用 hasOne 方法并返回其结果
+        
+        默认第二个参数为关联表的id 并且关联表id默认为当前表明加id，如果不是请单独设置
+        
+        默认第三个参数为当前表对应关联表名加id
+        
+        Eloquent 假设外键的值是与父级 id (或自定义 $primaryKey) 列的值相匹配的。换句话说，Eloquent 将会在 Phone 记录的 user_id 列中查找与用户表的 id 列相匹配的值。如果您希望该关联使用 id 以外的自定义键名，则可以给 hasOne 方法传递第三个参数
+        
+        return $this->hasOne(Category::class,'id')
+        
+        return $this->hasOne('App\Phone', 'foreign_key', 'local_key');
+        
+- 关联查找指定字段
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+        //多个字段
+        return $this->hasOne('App\Phone', 'foreign_key', 'local_key')->select(['id','name']);
+        //单个字段
+        
+- belongsTo 反向关联
+        
+        Eloquent 会尝试匹配 Phone 模型上的 user_id 至 User 模型上的 id 。它是通过检查关系方法的名称并使用 _id 作为后缀名来确定默认外键名称的。但是，如果 Phone 模型的外键不是 user_id，那么可以将自定义键名作为第二个参数传递给 belongsTo 方法    
+        默认关联表Category 中id值  对应当前表中 关联表Category加_id 值     
+        return $this->belongsTo(Category::class);
 
-## Security Vulnerabilities
+-  hasMany  一对多关联
+        
+        『一对多』关联用于定义单个模型拥有任意数量的其它关联模型
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- belongsTo反向一对多关联
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-  belongsToMany  多对多关联
+   
+        要定义这种关联，需要三个数据库表
+        第三个参数是定义此关联的模型在连接表里的外键名，第四个参数是另一个模型在连接表里的外键名：
+        第一个参数，关联表
+        第二个参数关联中间表，
+        第三个参数当前表在中间表中的外键名，
+        第四个参数是关联表在中间表中的外键名
+        return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id');
+
+
+###      服务提供者
