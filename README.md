@@ -1,4 +1,29 @@
 # 学习笔记
+
+###配置数据库  
+####命令行形式添加数据表
+---
+- 数据库迁移
+
+    创建迁移  创建user表
+    
+        php artisan make:migration create_users_table   
+    设置为索引 unique()
+        
+        $table->string('email')->unique();   
+    设置当前字段可空 nullable()
+    
+        $table->string('email')->nullable();
+    设置相当于可空版本的 VARCHAR (100) 的 remember_token 字段
+    
+        $table->rememberToken();
+    设置相当于可空的 created_at 和 updated_at TIMESTAMP
+        
+        $table->timestamps();
+    设置软删除字段 相当于为软删除添加一个可空的 deleted_at 字段   
+     
+     
+
 ### 路由配置没有生效
  
 ---
@@ -93,3 +118,28 @@ laravel里get()得到的是一组数据，first()得到的是一个model数据�
 
 
 ###      服务提供者
+
+
+
+###   错误问题
+
+- 添加索引时提示 索引名称太长无法保存
+  
+        Syntax error or access violation: 1071 Specified key was too long; max key length is 1000 bytes (SQL: alter table `wyj_users` add unique `wyj_users_email_unique`(`email`))
+        
+    解决方案：   
+    编辑 AppServiceProvider.php 文件，并在 boot 方法内设置默认字符串的长度：
+    ```
+        use Illuminate\Support\Facades\Schema;
+        
+        public function boot()
+        {
+            Schema::defaultStringLength(191);
+        }
+    ```
+  
+    
+    
+           
+            
+     
