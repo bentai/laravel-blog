@@ -5,6 +5,10 @@
 ---
 - 数据库迁移
 
+    运行迁移
+        
+        php artisan migrate
+
     创建迁移  创建user表
     
         php artisan make:migration create_users_table   
@@ -21,8 +25,26 @@
         
         $table->timestamps();
     设置软删除字段 相当于为软删除添加一个可空的 deleted_at 字段   
-     
-     
+    
+        $table->softDeletes();
+    设置字段注释 comment
+    
+        $table->bigIncrements('id')->comment('文章表主键');
+    设置mediumtext类型字段 mediumText
+    
+        $table->mediumText('markdown')->comment('markdown文章内容');
+    设置字段默认值 default
+        
+        $table->tinyInteger('category_id')->default(0)->comment('分类id');
+    设置字段非负数 unsigned
+    
+        $table->integer('click')->unsigned()->default(0)->comment('点击数');
+        
+- 数据填充
+
+    创建一个 Seeders
+    
+        php artisan make:seeder UsersTableSeeder
 
 ### 路由配置没有生效
  
