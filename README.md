@@ -45,6 +45,13 @@
     创建一个 Seeders
     
         php artisan make:seeder UsersTableSeeder
+- 路由 route
+
+    中间件
+        
+        middleware
+        
+    
 
 ### 路由配置没有生效
  
@@ -159,6 +166,14 @@ laravel里get()得到的是一组数据，first()得到的是一个model数据�
             Schema::defaultStringLength(191);
         }
     ```
+  
+ - 在路由中重定向访问地址 结果范文localhost地址
+        
+        Route::redirect('/', url('/admin/login/index'));
+   
+   url()函数默认读取config/app.conf中url 的参数   'url' => env('APP_URL', 'http://localhost'),
+   其中在env中设置的APP_URL参数为localhost,未设置的话默认值也为localhost     
+   
   
     
     

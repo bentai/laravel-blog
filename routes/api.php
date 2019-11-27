@@ -13,11 +13,3 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/tests', 'Super\TestsController@index');
-Route::get('/tests/{id}', 'Super\TestsController@show');
-Route::post('/tests', 'Super\TestsController@store');
-
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
