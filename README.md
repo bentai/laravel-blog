@@ -47,9 +47,15 @@
         php artisan make:seeder UsersTableSeeder
 - 路由 route
 
-    中间件
+    中间件 保护路由   只允许通过认证的用户访问给定的路由
         
         middleware
+    默认跳转地址？？  认证通过默认跳转地址
+        
+        redirectTo
+    Auth::routes();
+        自动注册一套基于auth的路由（包括登录，注册，登录）
+    
         
     
 
@@ -172,8 +178,45 @@ laravel里get()得到的是一组数据，first()得到的是一个model数据�
         Route::redirect('/', url('/admin/login/index'));
    
    url()函数默认读取config/app.conf中url 的参数   'url' => env('APP_URL', 'http://localhost'),
-   其中在env中设置的APP_URL参数为localhost,未设置的话默认值也为localhost     
+   其中在env中设置的APP_URL参数为localhost,未设置的话默认值也为localhost    
+  - 路由中使用middleware  报错类找不到
+        
+        要在app/Http/Kernel.php 中$routeMiddleware添加自定义的middleware
+        
+        protected $routeMiddleware = [
+                'auth' => \App\Http\Middleware\Authenticate::class,
+                'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+                'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+                'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+                'can' => \Illuminate\Auth\Middleware\Authorize::class,
+                'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+                'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+                'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+                'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+                'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        
+                'admin.auth' => \App\Http\Middleware\AdminAuth::class,
+                'admin.login' => \App\Http\Middleware\AdminLogin::class,
+            ]; 
+   -  在Auth 控制器模块中创建新控制器启用  admin 验证  但是没有登录成功
    
+           protected function guard()
+           {
+               return Auth::guard('admin');
+           }
+           
+           在项目中更改了自带的UserModel 类目录结构（位置），要在auth中重新定义User类路径
+           
+           'providers' => [
+                   'users' => [
+                       'driver' => 'eloquent',
+           //            'model' => App\User::class,
+                       'model' => App\Models\User::class,
+                   ],
+           ]
+           
+           
+
   
     
     
