@@ -131,6 +131,7 @@ laravel里get()得到的是一组数据，first()得到的是一个model数据�
 - belongsTo 反向关联
         
         Eloquent 会尝试匹配 Phone 模型上的 user_id 至 User 模型上的 id 。它是通过检查关系方法的名称并使用 _id 作为后缀名来确定默认外键名称的。但是，如果 Phone 模型的外键不是 user_id，那么可以将自定义键名作为第二个参数传递给 belongsTo 方法    
+        
         默认关联表Category 中id值  对应当前表中 关联表Category加_id 值     
         return $this->belongsTo(Category::class);
 
@@ -153,6 +154,12 @@ laravel里get()得到的是一组数据，first()得到的是一个model数据�
 
 
 ###      服务提供者
+
+-   observer   观察者模式
+        
+        基于model  在使用model处理是会触发到observer 在观察者模式中进行业务操作
+        中间件是在route中出发，在路由中
+        
 
 
 
@@ -215,8 +222,28 @@ laravel里get()得到的是一组数据，first()得到的是一个model数据�
                    ],
            ]
            
+   -  设置表自增主键
+   
+            alter table wlcms_user AUTO_INCREMENT=11;
+   -  withTrashed()  报找不到
+   
+            一开始只在class 外use了use Illuminate\Database\Eloquent\SoftDeletes;
+            要在class内再use SoftDeletes 才可以使用
+   - 在class 内use class外是导入命名空间，class外是导入命名空间，class内是trait，function后的是变量捕获。，function后的是变量捕获。
+   
+  -  trait
+        其实说通俗一点，就是能把重复的方法拆分到一个文件，通过 use 引入以达到代码复用的目的。
+        更方便的能够复用方法，使用的时候直接ues 相关trait类，就能够使用相关特性，继承也能够实现相关功能，但是耦合度很高，而且后面新增功能会显得很臃肿，阅读性也不是很方便，还要点进去看，
+        
            
+           
+### 设计模式
 
+- 依赖注入
+
+- 门面
+
+- 观察者模式
   
     
     

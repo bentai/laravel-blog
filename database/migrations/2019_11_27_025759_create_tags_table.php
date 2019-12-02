@@ -15,10 +15,10 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('标签id');
-            $table->string('name')->defult('')->comment('标签名');
-            $table->string('slug')->defult('')->comment('slug');
-            $table->string('keywords')->defult('')->comment('标签的关键字');
-            $table->string('description')->defult('')->comment('标签的描述');
+            $table->string('name', 20)->default('')->comment('标签名');
+            $table->string('slug')->default('')->comment('slug');
+            $table->string('keywords')->default('')->comment('标签的关键字');
+            $table->string('description')->default('')->comment('标签的描述');
             $table->timestamps();
             $table->softDeletes();
         });
