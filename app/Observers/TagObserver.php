@@ -2,12 +2,15 @@
 
 namespace App\Observers;
 
+
 class TagObserver
 {
     //
-    public function saving()
+    public function saving($category)
     {
-        dd(111);
+        if ($category->isDirty('name') && empty($category->slug)) {
+            $category->slug = generate_english_slug($category->name);
+        }
     }
 
     public function creating()

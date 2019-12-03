@@ -159,6 +159,8 @@ laravel里get()得到的是一组数据，first()得到的是一个model数据�
         
         基于model  在使用model处理是会触发到observer 在观察者模式中进行业务操作
         中间件是在route中出发，在路由中
+        使用该模式要在服务提供者（Providers）中创建该服务，然后在
+        **config/app.php中创建引入**
         
 
 
