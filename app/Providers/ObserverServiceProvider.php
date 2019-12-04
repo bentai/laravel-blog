@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Article;
 use App\Models\Tag;
 use App\Observers\TagObserver;
+use App\Observers\ArticleObserver;
 use Illuminate\Support\ServiceProvider;
 
 class ObserverServiceProvider extends ServiceProvider
@@ -27,6 +29,7 @@ class ObserverServiceProvider extends ServiceProvider
     {
         //
         Tag::observe(TagObserver::class);
+        Article::observe(ArticleObserver::class);
 
     }
 }

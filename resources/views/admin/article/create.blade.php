@@ -5,7 +5,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('statics/editormd/css/editormd.min.css') }}">
     <style>
-        #wyj-content{
+        #bjy-content{
             z-index: 1000;
         }
     </style>
@@ -60,9 +60,9 @@
                 <th>{{ __('Tag') }}</th>
                 <td>
                     @foreach($tag as $v)
-                        {{ $v['name'] }}<input class="wyj-icheck" type="checkbox" name="tag_ids[]" value="{{ $v['id'] }}" @if(in_array($v['id'], old('tag_ids', []))) checked="checked" @endif> &emsp;
+                        {{ $v['name'] }}<input class="bjy-icheck" type="checkbox" name="tag_ids[]" value="{{ $v['id'] }}" @if(in_array($v['id'], old('tag_ids', []))) checked="checked" @endif> &emsp;
                     @endforeach
-                    <i class="fa fa-plus-square" style="font-size: 20px;cursor: pointer" data-toggle="modal" data-target="#wyj-tag-modal"></i>
+                    <i class="fa fa-plus-square" style="font-size: 20px;cursor: pointer" data-toggle="modal" data-target="#bjy-tag-modal"></i>
                 </td>
             </tr>
             <tr>
@@ -92,7 +92,7 @@
             <tr>
                 <th>{{ __('Content') }}</th>
                 <td>
-                    <div id="wyj-content">
+                    <div id="bjy-content">
                         <textarea name="markdown">{{ old('markdown') }}</textarea>
                     </div>
                 </td>
@@ -100,8 +100,8 @@
             <tr>
                 <th>{{ __('Topping') }}</th>
                 <td>
-                    {{ __('Yes') }} <input class="wyj-icheck" type="radio" name="is_top" value="1"> &emsp;&emsp;
-                    {{ __('No') }} <input class="wyj-icheck" type="radio" name="is_top" value="0" checked="checked">
+                    {{ __('Yes') }} <input class="bjy-icheck" type="radio" name="is_top" value="1"> &emsp;&emsp;
+                    {{ __('No') }} <input class="bjy-icheck" type="radio" name="is_top" value="0" checked="checked">
                 </td>
             </tr>
 
@@ -115,7 +115,7 @@
     </form>
 
     {{--添加标签--}}
-    <div class="modal fade" id="wyj-tag-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="bjy-tag-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -124,7 +124,7 @@
                 </div>
                 <div class="modal-body text-center">
                     <form class="form-inline" role="form">
-                        <input class="form-control wyj-tag-name" type="text" placeholder="{{ __('Name') }}">
+                        <input class="form-control bjy-tag-name" type="text" placeholder="{{ __('Name') }}">
                         <button type="button" class="btn btn-success js-add-tag">{{ __('Submit') }}</button>
                     </form>
                 </div>
@@ -146,7 +146,7 @@
             // You can custom @link base url.
             editormd.urls.atLinkBase = "https://github.com/";
 
-            testEditor = editormd("wyj-content", {
+            testEditor = editormd("bjy-content", {
                 autoFocus : false,
                 width     : "100%",
                 height    : 720,
@@ -167,7 +167,7 @@
         // 添加标签
         $('.js-add-tag').click(function () {
             var postData = {
-                name: $('.wyj-tag-name').val()
+                name: $('.bjy-tag-name').val()
             }
             $.ajax({
                 type: 'POST',
@@ -175,14 +175,14 @@
                 dataType: 'json',
                 data: postData,
                 success: function (response) {
-                    var redioStr = response.name+'<input class="wyj-icheck" type="checkbox" name="tag_ids[]" value="'+response.id+'" checked="checked"> &emsp;';
+                    var redioStr = response.name+'<input class="bjy-icheck" type="checkbox" name="tag_ids[]" value="'+response.id+'" checked="checked"> &emsp;';
                     $('.fa-plus-square').before(redioStr);
-                    $('.wyj-icheck').iCheck({
+                    $('.bjy-icheck').iCheck({
                         checkboxClass: "icheckbox_minimal-blue",
                         radioClass: "iradio_minimal-blue",
                         increaseArea: "20%"
                     });
-                    $('#wyj-tag-modal').modal('hide');
+                    $('#bjy-tag-modal').modal('hide');
                 },
                 error: function (response) {
                     $.each(response.responseJSON.errors, function (k, v) {

@@ -28,7 +28,7 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         // 登陆页面  增加中间件跳转
         Route::get('index', 'LoginController@index')->middleware('admin.login');
         //退出登录
-        Route::get('logout','AdminController@logout');
+        Route::get('logout','LoginController@logout');
     });
 });
 
@@ -46,6 +46,14 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('index', 'ArticleController@index');
         // 发布文章
         Route::get('create', 'ArticleController@create');
+        //新建文章
+//        Route::post('store', 'ArticleController@store');
+        Route::post('store', 'ArticleController@store');
+
+        /*Route::post('store', function()
+        {
+            dd(111);
+        });*/
 
     });
 

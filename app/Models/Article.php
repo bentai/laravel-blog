@@ -3,22 +3,8 @@
 namespace App\Models;
 
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Exception;
-use Illuminate\Contracts\Routing\UrlGenerator;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Collection;
-use Laravel\Scout\Searchable;
-use Str;
-
-//use SoftDeletes;
-
-
-
-class Article extends Model
+class Article extends Base
 {
-    use SoftDeletes;
 
     //
     /*public function category()
@@ -41,10 +27,9 @@ class Article extends Model
     public  function getLists()
     {
         return $this->withTrashed()->with('category')->orderBy('created_at','desc')->simplePaginate('10');
-//        dd($data->toArray());
-        /*return $data;
 
-        return self::with('category')->orderBy('created_at','desc')->simplePaginate('10');*/
+
+        //return self::with('category')->orderBy('created_at','desc')->simplePaginate('10');*/
 
     }
 }

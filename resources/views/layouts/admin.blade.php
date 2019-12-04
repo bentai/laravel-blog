@@ -35,7 +35,7 @@
                                     <a><i class="fa fa-book"></i> {{ __('Article') }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('admin/article/index') }}">{{ __('List') }}</a></li>
-                                        <li><a href="{{ url('admin/article/replaceView') }}">{{ __('Batch Replace') }}</a></li>
+{{--                                        <li><a href="{{ url('admin/article/replaceView') }}">{{ __('Batch Replace') }}</a></li>--}}
                                     </ul>
                                 </li>
                                 {{--<li>
@@ -99,6 +99,8 @@
                         </div>
                     </div>
                     <!-- /sidebar menu -->
+
+{{--                    <div id="toast-container" class="toast-top-center"><div class="toast toast-error" aria-live="assertive" style=""><div class="toast-progress" style="width: 29.5%;"></div><button type="button" class="toast-close-button" role="button">×</button><div class="toast-message">名称 不能为空。</div></div></div>--}}
 
                     <!-- /menu footer buttons -->
                     <div class="sidebar-footer hidden-small">

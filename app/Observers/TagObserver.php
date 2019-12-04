@@ -5,6 +5,7 @@ namespace App\Observers;
 
 class TagObserver
 {
+
     //
     public function saving($category)
     {
@@ -13,7 +14,7 @@ class TagObserver
         }
     }
 
-    public function creating()
+    /*public function creating()
     {
         dd(222);
     }
@@ -21,5 +22,10 @@ class TagObserver
     public function created()
     {
         dd(33);
+    }*/
+
+    public function created($model)
+    {
+        flash_success(__('Store Success'));
     }
 }

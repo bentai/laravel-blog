@@ -15,7 +15,6 @@ class TagController extends Controller
     //添加保存
     public function store(Store $request)
     {
-        Debugbar();
         $tag = Tag::create($request->only('name', 'keywords', 'description'));
         if ($request->ajax()){
             return response()->json($tag);

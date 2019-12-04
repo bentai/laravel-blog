@@ -20,6 +20,7 @@ class AdminAuth
         if (!Auth::guard('admin')->check()) {
             return redirect('admin/login/index');
         }
+//        dump($request);
         return $next($request);
     }
 }
