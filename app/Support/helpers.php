@@ -2,6 +2,8 @@
 
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
+
 
 if (!function_exists('generate_english_slug')) {
     /**
@@ -24,5 +26,19 @@ if (!function_exists('generate_english_slug')) {
         }
         return Str::slug($content);
 
+    }
+}
+
+if (!function_exists('cdn_url')) {
+    /**
+     * Generate a url for the CDN.
+     *
+     * @param $path
+     *
+     * @return string
+     */
+    function cdn_url($path)
+    {
+        return URL::assetFrom(config('bjyblog.cdn_domain'), $path);
     }
 }

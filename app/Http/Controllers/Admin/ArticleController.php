@@ -43,7 +43,7 @@ class ArticleController extends Controller
         return view('admin.article.create', $assgin);
     }
 
-    public function store(Store $request)
+    public function store(Store $request, Article $articleModel)
     {
         //获取出token外的所有数据
         $data = $request->except('_token');
@@ -66,6 +66,88 @@ class ArticleController extends Controller
             //批量上传标签id
             $articleTag->addTagIds($article->id, $tag_ids);
         }
-        redirect('admin/article/index');
+        return redirect('admin/article/index');
     }
+
+
+    public function edit($id)
+    {
+//        $article = Article::with('tag')->find($id)->toArray();
+        $article          = Article::withTrashed()->find($id);
+        $article->tag_ids = ArticleTag::where('article_id', $id)->pluck('tag_id')->toArray();
+        //分类
+        $category         = Category::all();
+        //标签
+        $tag              = Tag::all();
+
+//        $author = Config::where(['name'=>'author'])->value();
+//        $author   = Config::where('name', 'AUTHOR')->value('value');
+
+        $assgin = compact('category','tag', 'article');
+        return view('admin.article.edit', $assgin);
+    }
+
+    public function update(Store $request, Article $articleModel,ArticleTag $articleTagModel, $id)
+    {
+        $data = $request->except('_token');
+        if($request->hasFile('cover')){
+            $result = Upload::file('cover','uploads/article');
+            if($result['code'] === 200){
+                $data['cover'] = $result['data'][0]['path'];
+            }
+        }
+
+        $tag_ids = $data['tag_ids'];
+        unset($data['tag_ids']);
+        $article = Article::withTrashed()->find($id)->update($data);
+        if($article){
+            //删除之前关联标签
+            ArticleTag::where(['article_id'=>$id])->forceDelete();
+            $articleTagModel->addTagIds($id, $tag_ids);
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * 删除文章
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy(Article $articleModel, $id)
+    {
+        $articleModel->destroy($id);
+        return redirect()->back();
+    }
+
+    /**
+     * 恢复删除文章
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function restore(Article $articleModel, $id)
+    {
+        $articleModel->onlyTrashed()->find($id)->restore();
+        return redirect()->back();
+    }
+
+
+    /**
+     * 恢复删除文章
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function forceDelete(Article $articleModel, ArticleTag $articleTagModel, $id)
+    {
+        $articleModel->onlyTrashed()->find($id)->forceDelete();
+        $articleTagModel->where(['article_id'=>$id])->forceDelete();
+        return redirect()->back();
+    }
+
+
 }

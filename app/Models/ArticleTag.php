@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ArticleTag extends Base
 {
-    use SoftDeletes;
     //
 //    protected $fillable = ['name'];
     public function addTagIds(int $article_id, array $tag_ids)
@@ -17,9 +16,11 @@ class ArticleTag extends Base
         $data = array_map(function($tag) use ($article_id){
             return [
                 'article_id' => $article_id,
-                'tag_id'        => $tag
+                'tag_id'        => $tag,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ];
         },$tag_ids);
-        return $this->inster($data);
+        return $this->insert($data);
     }
 }

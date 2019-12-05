@@ -18,6 +18,11 @@ class Article extends Base
         return $this->belongsTo(Category::class);
     }
 
+    public function tag()
+    {
+        return $this->belongsToMany(Tag::class,'article_tags','article_id', 'tag_id')->select(['id','name']);
+    }
+
     public function categories(){
         return $this->hasOne(Categories::class,'id');
     }

@@ -44,13 +44,13 @@
                 <td>
                     <a href="{{ url('admin/article/edit', [$v->id]) }}">{{ __('Edit') }}</a>
                     |
-                    {{--@if($v->trashed())
+                    @if($v->trashed())
                         <a href="javascript:if(confirm('{{ __('Restore') }}?'))location.href='{{ url('admin/article/restore', [$v->id]) }}'">{{ __('Restore') }}</a>
                         |
                         <a href="javascript:if(confirm('{{ __('Force Delete') }}?'))location.href='{{ url('admin/article/forceDelete', [$v->id]) }}'">{{ __('Force Delete') }}</a>
                     @else
                         <a href="javascript:if(confirm('{{ __('Delete') }}?'))location.href='{{ url('admin/article/destroy', [$v->id]) }}'">{{ __('Delete') }}</a>
-                    @endif--}}
+                    @endif
                 </td>
             </tr>
         @endforeach

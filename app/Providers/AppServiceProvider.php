@@ -29,6 +29,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //设置数据库默认varchar默认长度
-        Schema::defaultStringLength(191);
+        Schema::defaultStringLength(255);
     }
 }

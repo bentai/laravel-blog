@@ -39,7 +39,6 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         // 后台首页
         Route::get('index', 'IndexController@index');
     });
-
     //文章控制器
     Route::prefix('article')->group(function (){
         //文章列表
@@ -49,6 +48,18 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         //新建文章
 //        Route::post('store', 'ArticleController@store');
         Route::post('store', 'ArticleController@store');
+        //编辑文章
+        Route::get('edit/{id}', 'ArticleController@edit');
+        Route::post('update/{id}', 'ArticleController@update');
+        //删除文章
+        Route::get('destroy/{id}', 'ArticleController@destroy');
+        //恢复删除文章
+        Route::get('restore/{id}', 'ArticleController@restore');
+        //彻底删除文章
+        Route::get('forceDelete/{id}', 'ArticleController@forceDelete');
+
+
+
 
         /*Route::post('store', function()
         {

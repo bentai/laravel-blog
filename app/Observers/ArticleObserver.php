@@ -2,8 +2,7 @@
 
 namespace App\Observers;
 
-//use GrahamCampbell\Markdown\Facades\Markdown;
-use Illuminate\Mail\Markdown;
+use Markdown;
 class ArticleObserver
 {
 
