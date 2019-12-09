@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc2cbb0-5b8f-4835-91ab-cf157d8bf3ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NavController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Category/Store.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Category/Update.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Nav/Store.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Nav/Update.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Nav.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Observers/CategoryObserver.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/config/scout.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_09_061908_create_navs_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/NavsTbleSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generate" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/@types/events/index.d.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/@types/events/package.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/@types/glob/index.d.ts" afterDir="false" />
@@ -1206,37 +1195,19 @@
       <change afterPath="$PROJECT_DIR$/node_modules/vue-template-compiler/package.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/vue-template-compiler/types/index.d.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/vue-template-compiler/types/test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/tag/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/tag/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/tag/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/article/replaceView.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/category/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/category/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/category/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/nav/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/nav/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/nav/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/tag/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/tag/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/tag/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/vendor/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/vendor/pagination/bjypage.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NavController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NavController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Nav/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Nav/Store.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Base.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Observers/TagObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/TagObserver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/ObserverServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ObserverServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/article/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/article/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -1378,6 +1349,7 @@
       <path value="$PROJECT_DIR$/vendor/league/commonmark" />
       <path value="$PROJECT_DIR$/vendor/graham-campbell/markdown" />
       <path value="$PROJECT_DIR$/vendor/baijunyao/laravel-flash" />
+      <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
     </include_path>
   </component>
   <component name="PhpXdebugProxy" ide_key="PHPSTROM" host="WWW.BLOG.COM" port="80" />
@@ -1479,7 +1451,7 @@
       <workItem from="1575604562922" duration="7862000" />
       <workItem from="1575682272517" duration="6080000" />
       <workItem from="1575859259637" duration="4439000" />
-      <workItem from="1575870935512" duration="5408000" />
+      <workItem from="1575870935512" duration="12495000" />
     </task>
     <task id="LOCAL-00001" summary="学习笔记MD添加">
       <created>1574760179794</created>
@@ -1551,7 +1523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575530379241</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="分类导航标签基本功能完成">
+      <created>1575877025860</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1575877025860</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1582,6 +1561,7 @@
     <MESSAGE value="新增dubugber google-translate 拓展，使用tagserver 观察者 动态添加slug 并通过google-translate 拓展翻译成英文slug" />
     <MESSAGE value="新增ide_helper 拓展新增markdown拓展，引入语言包" />
     <MESSAGE value="文章模块基本功能完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="文章模块基本功能完成" />
+    <MESSAGE value="分类导航标签基本功能完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="分类导航标签基本功能完成" />
   </component>
 </project>

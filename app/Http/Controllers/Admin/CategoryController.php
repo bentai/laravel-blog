@@ -11,8 +11,12 @@ class CategoryController extends Controller
     //
     public function index(Category $categoryModel)
     {
+        $wd = \request()->input('wd');
         return view('admin.category.index',[
-            'categoty' => $categoryModel->withTrashed()->orderBy('sort')->get()
+            'categoty' => $categoryModel->withTrashed()
+                ->when($wd, function ($query) use ($wd) {
+                    return $query->where('name', 'like', "%$wd%");
+            })->orderBy('sort')->get()
         ]);
     }
 

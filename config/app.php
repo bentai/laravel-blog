@@ -180,6 +180,10 @@ return [
          * Observe
          */
         App\Providers\ObserverServiceProvider::class,
+        /**
+         * scout
+         */
+        Laravel\Scout\ScoutServiceProvider::class,
 
     ],
 

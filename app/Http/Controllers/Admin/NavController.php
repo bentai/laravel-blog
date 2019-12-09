@@ -9,10 +9,15 @@ use App\Http\Requests\Nav\Store;
 class NavController extends Controller
 {
     //
-    public function index(Nav $NavModel)
+    public function index(Request $request, Nav $NavModel)
     {
+        $wd = $request->input('wd');
         return view('admin.nav.index',[
-            'nav' => $NavModel->withTrashed()->orderBy('sort')->get()
+            'nav' => $NavModel->withTrashed()
+                ->when($wd, function ($query) use ($wd) {
+                    return $query->where('name', 'like', "%$wd%");
+                })
+                ->orderBy('sort')->get()
         ]);
     }
 

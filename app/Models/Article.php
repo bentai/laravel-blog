@@ -1,17 +1,12 @@
 <?php
 
 namespace App\Models;
-
-
+use Laravel\Scout\Searchable;
+use DB;
 class Article extends Base
 {
+    use Searchable;
 
-    //
-    /*public function category()
-    {
-    //第二个参数是当前 表对应关联表id
-        return $this->belongsTo(Category::class,'id');
-    }*/
 
     public function category()
     {
@@ -31,10 +26,40 @@ class Article extends Base
 
     public  function getLists()
     {
-        return $this->withTrashed()->with('category')->orderBy('created_at','desc')->simplePaginate('10');
-
-
-        //return self::with('category')->orderBy('created_at','desc')->simplePaginate('10');*/
-
+        $wd = request()->input('wd', '')?: '';
+        //获取查询id
+        $id = self::searchArticleGetId($wd);
+//        return $this->withTrashed()->with('category')->orderBy('created_at','desc')->simplePaginate(2);
+        return $this->withTrashed()->with('category')
+            ->when($wd, function($query) use ($id){
+                return $query->whereIn('id', $id);
+            })
+            ->orderBy('created_at','desc')->paginate(2);
     }
+
+
+    public static function searchArticleGetId(string $wd)
+    {
+        // 如果 SCOUT_DRIVER 为 null 则使用 sql 搜索
+        if (env('SCOUT_DRIVER') === null) {
+             return self::withTrashed()->where('title', 'like', "%$wd%")
+                ->orWhere('description', 'like', "%$wd%")
+                ->orWhere('markdown', 'like', "%$wd%")
+                ->pluck('id');
+        }
+
+        // 如果全文搜索出错则降级使用 sql like
+        /*try {
+//            dd($wd);
+            self::search($wd)->get();
+        }catch(\Exception $e){
+//            dd($e->getMessage());
+            return self::where('title', 'like', "%$wd%")
+                ->orWhere('description', 'like', "%$wd%")
+                ->orWhere('markdown', 'like', "%$wd%")
+                ->pluck('id');
+        }*/
+    }
+
+
 }

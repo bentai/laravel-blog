@@ -10,10 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
-    public function index(Tag $TagModel)
+    public function index(Request $request, Tag $TagModel)
     {
+        $wd = $request->input('wd');
+
         return view('admin.tag.index',[
-            'tag' => $TagModel->withTrashed()->get()
+            'tag' => $TagModel->withTrashed()
+                ->when($wd, function ($query) use ($wd) {
+                    return $query->where('name', 'like', "%$wd%");
+                })
+                ->get()
         ]);
     }
 
