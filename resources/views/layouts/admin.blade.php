@@ -35,10 +35,10 @@
                                     <a><i class="fa fa-book"></i> {{ __('Article') }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('admin/article/index') }}">{{ __('List') }}</a></li>
-{{--                                        <li><a href="{{ url('admin/article/replaceView') }}">{{ __('Batch Replace') }}</a></li>--}}
+                                        <li><a href="{{ url('admin/article/replaceView') }}">{{ __('Batch Replace') }}</a></li>
                                     </ul>
                                 </li>
-                                {{--<li>
+                                <li>
                                     <a><i class="fa fa-th"></i> {{ __('Category & Nav') }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('admin/category/index') }}">{{ __('Category') }}</a></li>
@@ -51,7 +51,7 @@
                                         <li><a href="{{ url('admin/tag/index') }}">{{ __('List') }}</a></li>
                                     </ul>
                                 </li>
-                                <li>
+                                {{--<li>
                                     <a><i class="fa fa-comments"></i> {{ __('Comment') }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('admin/comment/index') }}">{{ __('List') }}</a></li>

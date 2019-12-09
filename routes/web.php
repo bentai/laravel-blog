@@ -57,21 +57,69 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('restore/{id}', 'ArticleController@restore');
         //彻底删除文章
         Route::get('forceDelete/{id}', 'ArticleController@forceDelete');
-
-
-
-
-        /*Route::post('store', function()
-        {
-            dd(111);
-        });*/
-
+        //批量替换功能视图
+        Route::get('replaceView', 'ArticleController@replaceView');
+        // 批量替换
+        Route::post('replace', 'ArticleController@replace');
     });
 
-    // 标签控制器
+    // 分类控制器
+    Route::prefix('category')->group(function () {
+        // 分类列表
+        Route::get('index', 'CategoryController@index');
+        // 添加分类
+        Route::get('create', 'CategoryController@create');
+        // 保存分类
+        Route::post('store', 'CategoryController@store');
+        // 编辑分类
+//        Route::get('edit/{id}', 'CategoryController@edit');
+        Route::get('edit/{id}', 'CategoryController@edit');
+        // 更新分类
+        Route::post('update/{id}', 'CategoryController@update');
+        // 保存排序
+        Route::post('sort', 'CategoryController@sort');
+        Route::get('destroy/{id}', 'CategoryController@destroy');
+        Route::get('restore/{id}', 'CategoryController@restore');
+        Route::get('forceDelete/{id}', 'CategoryController@forceDelete');
+    });
+
+    Route::prefix('nav')->group(function () {
+        // 导航列表
+        Route::get('index', 'NavController@index');
+        // 添加导航
+        Route::get('create', 'NavController@create');
+        // 保存导航
+        Route::post('store', 'NavController@store');
+        // 编辑导航
+//        Route::get('edit/{id}', 'NavController@edit');
+        Route::get('edit/{id}', 'NavController@edit');
+        // 更新导航
+        Route::post('update/{id}', 'NavController@update');
+        // 保存排序
+        Route::post('sort', 'NavController@sort');
+        Route::get('destroy/{id}', 'NavController@destroy');
+        Route::get('restore/{id}', 'NavController@restore');
+        Route::get('forceDelete/{id}', 'NavController@forceDelete');
+    });
+
+        // 标签控制器
     Route::prefix('tag')->group(function (){
-        //添加标签
-        Route::post('store','TagController@store');
+        // 标签列表
+        Route::get('index', 'TagController@index');
+        // 添加标签
+        Route::get('create', 'TagController@create');
+        // 保存标签
+        Route::post('store', 'TagController@store');
+        // 编辑标签
+//        Route::get('edit/{id}', 'TagController@edit');
+        Route::get('edit/{id}', 'TagController@edit');
+        // 更新标签
+        Route::post('update/{id}', 'TagController@update');
+        // 保存排序
+        Route::post('sort', 'TagController@sort');
+        Route::get('destroy/{id}', 'TagController@destroy');
+        Route::get('restore/{id}', 'TagController@restore');
+        Route::get('forceDelete/{id}', 'TagController@forceDelete');
     });
 
 });

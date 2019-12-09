@@ -15,14 +15,15 @@
         "baijunyao/laravel-restful": "^1.0",
         "baijunyao/laravel-scout-elasticsearch": "^5.0",
         "baijunyao/laravel-support": "^1.0",
-        "baijunyao/laravel-upload": "^2.0",
         "baijunyao/laravel-toastr": "^1.1",
-        "fideloper/proxy": "^4.0",
-        "laravel/framework": "^6.2",
-        "laravel/tinker": "^1.0",
-        "stichoza/google-translate-php": "^4.0",
+        "baijunyao/laravel-upload": "^2.0",
         "doctrine/dbal": "^2.5",
-        "graham-campbell/markdown": "^11.0"
+        "fideloper/proxy": "^4.0",
+        "graham-campbell/markdown": "^11.0",
+        "laravel/framework": "^6.2",
+        "laravel/scout": "^7.2",
+        "laravel/tinker": "^1.0",
+        "stichoza/google-translate-php": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

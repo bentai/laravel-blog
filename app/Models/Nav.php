@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @author  hanmeimei
  */
-class Category extends Base
+class Nav extends Base
 {
 
 

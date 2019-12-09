@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Observers;
+use App\Models\Article;
 
-
-class TagObserver
+class CategoryObserver
 {
 
     //
@@ -14,10 +14,10 @@ class TagObserver
         }
     }
 
-    public function deleting($tag)
+    public function deleting($category)
     {
-        if (ArticleTag::where('tag_id', $tag->id)->count() !== 0) {
-            flash_error('此标签下有文章，不可以删除。');
+        if (Article::where('category_id', $category->id)->count() !== 0) {
+            flash_error('请先删除此分类下的文章');
             return false;
         }
     }

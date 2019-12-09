@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aff797d380082b108849781a7d7516c2",
+    "content-hash": "3ab1e913c1cede2d3dcdf80ce25c7244",
     "packages": [
         {
             "name": "baijunyao/laravel-flash",

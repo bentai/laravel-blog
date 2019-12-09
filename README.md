@@ -158,6 +158,17 @@ laravel里get()得到的是一组数据，first()得到的是一个model数据�
         使用 isDirty() 方法确定模型或给定属性是否已被修改
 
 
+#####   分页
+
+-   paginate  
+
+        paginate 方法根据用户浏览的当前页码，自动设置恰当的偏移量 offset 和限制数 limit
+
+-   simaplePaginate
+
+        如果你只需要在分页视图中简单地显示「下一页」和「上一页」的链接，
+        你可以使用 simaplePaginate 方法来执行更高效地查询。
+        这在数据量很大且不需要在渲染视图时显示每页的页码时非常有用
 ###      服务提供者
 
 -   observer   观察者模式
