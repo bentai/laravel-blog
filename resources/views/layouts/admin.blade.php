@@ -51,14 +51,14 @@
                                         <li><a href="{{ url('admin/tag/index') }}">{{ __('List') }}</a></li>
                                     </ul>
                                 </li>
-                                {{--<li>
+                                <li>
                                     <a><i class="fa fa-comments"></i> {{ __('Comment') }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('admin/comment/index') }}">{{ __('List') }}</a></li>
                                         <li><a href="{{ url('admin/comment/replaceView') }}">{{ __('Batch Replace') }}</a></li>
                                     </ul>
                                 </li>
-                                <li>
+                                {{--<li>
                                     <a><i class="fa fa-users"></i> {{ __('User') }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('admin/user/index') }}">{{ __('Administrator') }}</a></li>

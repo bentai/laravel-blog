@@ -6,6 +6,11 @@ Route::namespace('Home')->group(function () {
     Route::get('/', 'IndexController@index');
 
 });
+use App\Models\Article;
+Route::get('search', function () {
+    // 为查看方便都转成数组
+    dump(Article::all()->toArray());
+});
 
 
 
@@ -122,5 +127,28 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         Route::get('forceDelete/{id}', 'TagController@forceDelete');
     });
 
+    //评价模块
+    Route::prefix('comment')->group(function (){
+        //评价列表
+        Route::get('index', 'CommentController@index');
+        // 发布评价
+        Route::get('create', 'CommentController@create');
+        //新建评价
+//        Route::post('store', 'CommentController@store');
+        Route::post('store', 'CommentController@store');
+        //编辑评价
+        Route::get('edit/{id}', 'CommentController@edit');
+        Route::post('update/{id}', 'CommentController@update');
+        //删除评价
+        Route::get('destroy/{id}', 'CommentController@destroy');
+        //恢复删除评价
+        Route::get('restore/{id}', 'CommentController@restore');
+        //彻底删除评价
+        Route::get('forceDelete/{id}', 'CommentController@forceDelete');
+        //批量替换功能视图
+        Route::get('replaceView', 'CommentController@replaceView');
+        // 批量替换
+        Route::post('replace', 'CommentController@replace');
+    });
 });
 

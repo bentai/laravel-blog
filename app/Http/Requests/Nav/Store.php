@@ -25,7 +25,6 @@ class Store extends FormRequest
     {
         return [
             'name' => 'required|unique:navs',
-            'url'  => 'required',
         ];
     }
 }
