@@ -7,6 +7,16 @@ class Article extends Base
 {
     use Searchable;
 
+    /**
+     * 索引的字段
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return $this->only('id', 'title', 'content');
+    }
+
 
     public function category()
     {
@@ -29,12 +39,13 @@ class Article extends Base
         $wd = request()->input('wd', '')?: '';
         //获取查询id
         $id = self::searchArticleGetId($wd);
+//        dd($id);
 //        return $this->withTrashed()->with('category')->orderBy('created_at','desc')->simplePaginate(2);
         return $this->withTrashed()->with('category')
             ->when($wd, function($query) use ($id){
                 return $query->whereIn('id', $id);
             })
-            ->orderBy('created_at','desc')->paginate(2);
+            ->orderBy('created_at','desc')->paginate(15);
     }
 
 
@@ -47,18 +58,16 @@ class Article extends Base
                 ->orWhere('markdown', 'like', "%$wd%")
                 ->pluck('id');
         }
-
         // 如果全文搜索出错则降级使用 sql like
-        /*try {
-//            dd($wd);
-            self::search($wd)->get();
+        try {
+            $id = self::search($wd)->keys();
         }catch(\Exception $e){
-//            dd($e->getMessage());
-            return self::where('title', 'like', "%$wd%")
+            $id = self::where('title', 'like', "%$wd%")
                 ->orWhere('description', 'like', "%$wd%")
                 ->orWhere('markdown', 'like', "%$wd%")
                 ->pluck('id');
-        }*/
+        }
+        return $id;
     }
 
 

@@ -184,6 +184,8 @@ return [
          * scout
          */
         Laravel\Scout\ScoutServiceProvider::class,
+        Baijunyao\LaravelScoutElasticsearch\ElasticsearchServiceProvider::class,
+
 
     ],
 
