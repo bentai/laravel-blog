@@ -17,6 +17,15 @@ class ArticleObserver
                 $article->markdown
             );
         }
+
+        if (empty($article->cover)) {
+            $article->cover = $article->getCover($article->markdown);
+        }
+
+        if (empty($article->is_top)) {
+            $article->is_top = 0;
+        }
+
         if ($article->isDirty('title') && empty($article->slug)) {
             $article->slug = generate_english_slug($article->title);
         }

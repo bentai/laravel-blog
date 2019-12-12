@@ -186,6 +186,8 @@ return [
         Laravel\Scout\ScoutServiceProvider::class,
         Baijunyao\LaravelScoutElasticsearch\ElasticsearchServiceProvider::class,
 
+        App\Providers\ComposerServiceProvider::class,
+
 
     ],
 

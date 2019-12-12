@@ -6,15 +6,6 @@ Route::namespace('Home')->group(function () {
     Route::get('/', 'IndexController@index');
 
 });
-use App\Models\Article;
-Route::get('search', function () {
-    // 为查看方便都转成数组
-    dump(Article::all()->toArray());
-});
-
-
-
-
 
 // Auth
 Route::namespace('Auth')->prefix('auth')->group(function () {
@@ -150,5 +141,125 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         // 批量替换
         Route::post('replace', 'CommentController@replace');
     });
+
+    // 管理员
+    Route::prefix('user')->group(function () {
+        // 管理员列表
+        Route::get('index', 'UserController@index');
+        // 编辑管理员
+        Route::get('edit/{id}', 'UserController@edit');
+        Route::post('update/{id}', 'UserController@update');
+        // 删除管理员
+        Route::get('destroy/{id}', 'UserController@destroy');
+        // 恢复删除的管理员
+        Route::get('restore/{id}', 'UserController@restore');
+        // 彻底删除管理员
+        Route::get('forceDelete/{id}', 'UserController@forceDelete');
+    });
+
+
+
+
+    // 友情链接管理
+    Route::prefix('friendshipLink')->group(function () {
+        // 友情链接列表
+        Route::get('index', 'FriendshipLinkController@index');
+        // 添加友情链接
+        Route::get('create', 'FriendshipLinkController@create');
+        Route::post('store', 'FriendshipLinkController@store');
+        // 编辑友情链接
+        Route::get('edit/{id}', 'FriendshipLinkController@edit');
+        Route::post('update/{id}', 'FriendshipLinkController@update');
+        // 排序
+        Route::post('sort', 'FriendshipLinkController@sort');
+        // 删除友情链接
+        Route::get('destroy/{id}', 'FriendshipLinkController@destroy');
+        // 恢复删除的友情链接
+        Route::get('restore/{id}', 'FriendshipLinkController@restore');
+        // 彻底删除友情链接
+        Route::get('forceDelete/{id}', 'FriendshipLinkController@forceDelete');
+    });
+
+    // 推荐博客管理
+    Route::prefix('site')->group(function () {
+        // 推荐博客列表
+        Route::get('index', 'SiteController@index');
+        // 添加推荐博客
+        Route::get('create', 'SiteController@create');
+        Route::post('store', 'SiteController@store');
+        // 编辑推荐博客
+        Route::get('edit/{id}', 'SiteController@edit');
+        Route::post('update/{id}', 'SiteController@update');
+        // 排序
+        Route::post('sort', 'SiteController@sort');
+        // 删除推荐博客
+        Route::get('destroy/{id}', 'SiteController@destroy');
+        // 恢复删除的推荐博客
+        Route::get('restore/{id}', 'SiteController@restore');
+        // 彻底删除推荐博客
+        Route::get('forceDelete/{id}', 'SiteController@forceDelete');
+    });
+
+    // 随言碎语管理
+    Route::prefix('note')->group(function () {
+        // 随言碎语列表
+        Route::get('index', 'NoteController@index');
+        // 添加随言碎语
+        Route::get('create', 'NoteController@create');
+        Route::post('store', 'NoteController@store');
+        // 编辑随言碎语
+        Route::get('edit/{id}', 'NoteController@edit');
+        Route::post('update/{id}', 'NoteController@update');
+        // 删除随言碎语
+        Route::get('destroy/{id}', 'NoteController@destroy');
+        // 恢复删除的随言碎语
+        Route::get('restore/{id}', 'NoteController@restore');
+        // 彻底删除随言碎语
+        Route::get('forceDelete/{id}', 'NoteController@forceDelete');
+    });
+
+    // 系统设置
+    Route::prefix('config')->group(function () {
+
+        // 编辑邮箱配置页面
+        Route::get('email', 'ConfigController@email');
+        //  Comment Audit
+        Route::get('commentAudit', 'ConfigController@commentAudit');
+        // 编辑备份配置页面
+        Route::get('backup', 'ConfigController@backup');
+        // SEO
+        Route::get('seo', 'ConfigController@seo');
+        // 编辑 qq 群配置页面
+        Route::get('qqQun', 'ConfigController@qqQun');
+        // Social Share
+        Route::get('socialShare', 'ConfigController@socialShare');
+        // 编辑配置项页面
+        Route::get('edit', 'ConfigController@edit');
+        Route::get('clear', 'ConfigController@clear');
+
+        // 保存数据
+        Route::post('update', 'ConfigController@update');
+    });
+
+    // 开源项目管理
+    Route::prefix('gitProject')->group(function () {
+        // 开源项目列表
+        Route::get('index', 'GitProjectController@index');
+        // 添加开源项目
+        Route::get('create', 'GitProjectController@create');
+        Route::post('store', 'GitProjectController@store');
+        // 编辑开源项目
+        Route::get('edit/{id}', 'GitProjectController@edit');
+        Route::post('update/{id}', 'GitProjectController@update');
+        // 排序
+        Route::post('sort', 'GitProjectController@sort');
+        // 删除开源项目
+        Route::get('destroy/{id}', 'GitProjectController@destroy');
+        // 恢复删除的开源项目
+        Route::get('restore/{id}', 'GitProjectController@restore');
+        // 彻底删除开源项目
+        Route::get('forceDelete/{id}', 'GitProjectController@forceDelete');
+    });
+
 });
 

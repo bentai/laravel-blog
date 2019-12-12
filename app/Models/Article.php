@@ -32,6 +32,31 @@ class Article extends Base
         return $this->hasOne(Categories::class,'id');
     }
 
+
+    /**
+     * 过滤描述中的换行。
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public function getDescriptionAttribute($value)
+    {
+        return str_replace(["\r", "\n", "\r\n"], '', $value);
+    }
+
+    /**
+     * @param $value
+     *
+     * @return mixed
+     *
+     * @author hanmeimei
+     */
+    public function getHtmlAttribute($value)
+    {
+        return str_replace('<img src="/uploads/article', '<img src="' . cdn_url('uploads/article'), $value);
+    }
+
 //    public function search
 
     public  function getLists()
@@ -68,6 +93,39 @@ class Article extends Base
                 ->pluck('id');
         }
         return $id;
+    }
+
+    /**
+     * 给文章的插图添加水印;并取第一张图片作为封面图
+     *
+     * @param string $content markdown格式的文章内容
+     * @param array  $except  忽略加水印的图片
+     *
+     * @return string
+     */
+    public function getCover(string $content, array $except = [])
+    {
+        // 获取文章中的全部图片
+        preg_match_all('/!\[.*?\]\((\S*(?<=png|gif|jpg|jpeg)).*?\)/i', $content, $images);
+
+        if (!empty($images[1])) {
+            // 循环给图片添加水印
+            foreach ($images[1] as $k => $v) {
+                $image = explode(' ', $v);
+                $file  = public_path() . $image[0];
+
+                if (file_exists($file) && !in_array($v, $except)) {
+                    add_text_water($file, config('bjyblog.water.text'));
+                }
+
+                // 取第一张图片作为封面图
+                if ($k == 0) {
+                    $cover = $image[0];
+                }
+            }
+        }
+
+        return $cover ?? 'uploads/article/default.jpg';
     }
 
 

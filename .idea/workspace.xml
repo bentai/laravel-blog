@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fc2cbb0-5b8f-4835-91ab-cf157d8bf3ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/scout.php" afterDir="false" />
+    <list default="true" id="7fc2cbb0-5b8f-4835-91ab-cf157d8bf3ac" name="Default Changelist" comment="使用elasticsearch 全文搜索">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CommentController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ConfigController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/FriendshipLinkController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/GitProjectController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NoteController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SiteController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/FirendshipLink/Store.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/GitProject/Store.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Note/Store.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Site/Store.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Comment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Config.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/FriendshipLink.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/GitProject.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Note.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Site.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/SocialiteUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/UserBase.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Providers/ComposerServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_11_080412_create_friendship_links_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_11_080505_create_sites_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_11_080533_create_notes_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_11_083530_create_configs_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_12_073134_create_git_projects_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/ConfigsTableSeender.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/FirendshipLinkTableSeender.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/GitProjectTableSeender.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/NotesTableSeender.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/SitesTableSeender.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/@types/events/index.d.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/@types/events/package.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/@types/glob/index.d.ts" afterDir="false" />
@@ -1195,19 +1224,41 @@
       <change afterPath="$PROJECT_DIR$/node_modules/vue-template-compiler/package.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/vue-template-compiler/types/index.d.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/vue-template-compiler/types/test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/blog.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/comment/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/comment/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/comment/replaceView.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/config/backup.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/config/commentAudit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/config/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/config/email.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/config/qqQun.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/config/seo.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/config/socialShare.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/config/socialite.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/friendshipLink/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/friendshipLink/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/friendshipLink/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/note/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/note/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/note/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/site/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/site/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/site/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/user/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/user/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.phpstorm.meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NavController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NavController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/TagController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Nav/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Nav/Store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Observers/ArticleObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/ArticleObserver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Support/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Support/helpers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/SocialiteUsersTableSeender.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/SocialiteUsersTableSeender.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/index/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -1326,7 +1377,6 @@
       <path value="$PROJECT_DIR$/vendor/stichoza/google-translate-php" />
       <path value="$PROJECT_DIR$/vendor/baijunyao/laravel-toastr" />
       <path value="$PROJECT_DIR$/vendor/baijunyao/laravel-jquery" />
-      <path value="$PROJECT_DIR$/vendor/laravel/scout" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/ringphp" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/streams" />
       <path value="$PROJECT_DIR$/vendor/elasticsearch/elasticsearch" />
@@ -1350,6 +1400,7 @@
       <path value="$PROJECT_DIR$/vendor/graham-campbell/markdown" />
       <path value="$PROJECT_DIR$/vendor/baijunyao/laravel-flash" />
       <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
+      <path value="$PROJECT_DIR$/vendor/laravel/scout" />
     </include_path>
   </component>
   <component name="PhpXdebugProxy" ide_key="PHPSTROM" host="WWW.BLOG.COM" port="80" />
@@ -1366,7 +1417,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Observers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="D:\PhpStorm 2019.2.5\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -1377,11 +1428,11 @@
       <recent name="E:\phpstudy\WWW\blog\app\Models" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\phpstudy\WWW\blog\app\Observers" />
-      <recent name="E:\phpstudy\WWW\blog\app\Http\Requests" />
-      <recent name="E:\phpstudy\WWW\blog\app\Http\Requests\Category" />
+      <recent name="E:\phpstudy\WWW\blog\app\Http\Requests\GitProject" />
+      <recent name="E:\phpstudy\WWW\blog\resources\views\admin\config" />
       <recent name="E:\phpstudy\WWW\blog\resources\views\admin" />
-      <recent name="E:\phpstudy\WWW\blog\app\Http\Controllers\Admin" />
+      <recent name="E:\phpstudy\WWW\blog\app\Http\Requests\Note" />
+      <recent name="E:\phpstudy\WWW\blog\app\Http\Requests\Site" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1451,7 +1502,11 @@
       <workItem from="1575604562922" duration="7862000" />
       <workItem from="1575682272517" duration="6080000" />
       <workItem from="1575859259637" duration="4439000" />
-      <workItem from="1575870935512" duration="12495000" />
+      <workItem from="1575870935512" duration="13335000" />
+      <workItem from="1575939044430" duration="8893000" />
+      <workItem from="1575959059024" duration="2507000" />
+      <workItem from="1576042552873" duration="13734000" />
+      <workItem from="1576111973884" duration="15919000" />
     </task>
     <task id="LOCAL-00001" summary="学习笔记MD添加">
       <created>1574760179794</created>
@@ -1530,7 +1585,28 @@
       <option name="project" value="LOCAL" />
       <updated>1575877025860</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="添加首页查询功能">
+      <created>1575884593590</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1575884593590</updated>
+    </task>
+    <task id="LOCAL-00013" summary="尝试使用scout 全文搜索功能">
+      <created>1575972666893</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1575972666893</updated>
+    </task>
+    <task id="LOCAL-00014" summary="使用elasticsearch 全文搜索">
+      <created>1576045796383</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1576045796383</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1562,6 +1638,9 @@
     <MESSAGE value="新增ide_helper 拓展新增markdown拓展，引入语言包" />
     <MESSAGE value="文章模块基本功能完成" />
     <MESSAGE value="分类导航标签基本功能完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="分类导航标签基本功能完成" />
+    <MESSAGE value="添加首页查询功能" />
+    <MESSAGE value="尝试使用scout 全文搜索功能" />
+    <MESSAGE value="使用elasticsearch 全文搜索" />
+    <option name="LAST_COMMIT_MESSAGE" value="使用elasticsearch 全文搜索" />
   </component>
 </project>

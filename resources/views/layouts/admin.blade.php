@@ -58,11 +58,11 @@
                                         <li><a href="{{ url('admin/comment/replaceView') }}">{{ __('Batch Replace') }}</a></li>
                                     </ul>
                                 </li>
-                                {{--<li>
+                                <li>
                                     <a><i class="fa fa-users"></i> {{ __('User') }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('admin/user/index') }}">{{ __('Administrator') }}</a></li>
---}}{{--                                        <li><a href="{{ url('admin/socialiteUser/index') }}">{{ __('Socialite User') }}</a></li>--}}{{--
+                                        <li><a href="{{ url('admin/socialiteUser/index') }}">{{ __('Socialite User') }}</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -82,7 +82,7 @@
                                     <a><i class="fa fa-cogs"></i> {{ __('Setting') }} <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ url('admin/config/email') }}">{{ __('Email') }}</a></li>
---}}{{--                                        <li><a href="{{ url('admin/socialiteClient/index') }}">{{ __('Socialite') }}</a></li>--}}{{--
+{{--                                        <li><a href="{{ url('admin/socialiteClient/index') }}">{{ __('Socialite') }}</a></li>--}}
                                         <li><a href="{{ url('admin/config/commentAudit') }}">{{ __('Comment Audit') }}</a></li>
                                         <li><a href="{{ url('admin/gitProject/index') }}">{{ __('Open Source') }}</a></li>
                                         @if(config('app.locale') === 'zh-CN')
@@ -94,7 +94,7 @@
                                         <li><a href="{{ url('admin/config/edit') }}">{{ __('Other Setting') }}</a></li>
                                         <li><a href="{{ url('admin/config/clear') }}">{{ __('Clear Cache') }}</a></li>
                                     </ul>
-                                </li>--}}
+                                </li>
                             </ul>
                         </div>
                     </div>
