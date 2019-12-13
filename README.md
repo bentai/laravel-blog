@@ -173,8 +173,35 @@ laravel里get()得到的是一组数据，first()得到的是一个model数据�
 -    orderBy 多字段排序
 
         添加多个orderBy()方法，优先级按防止排序
+-   findOrFail
 
+        未找到时抛出异常
+        
+-   setCollection
 
+        动态添加属性到当前对象中
+        $articles->setCollection(
+            collect(
+                $articles->items()
+            )->map(function ($v) use ($category) {
+                // 添加 分类属性
+                $v->category = $category;
+
+                return $v;
+            })
+        );
+-     $category->articles
+
+        $category = Category::select('id', 'name', 'keywords', 'description')->findOrFail($id);
+        $articles = $category->articles()
+            ->orderBy('created_at', 'desc')
+            ->with('tags')
+            ->paginate(10);
+        相当于  在ArticleModel 中 自动引入category_id 查询
+        
+-    find()
+
+    
 
 ###   缓存
 

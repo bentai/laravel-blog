@@ -3,6 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Str;
+use App\Models\Article;
 /**
  * Class Category
  *
@@ -16,8 +17,17 @@ use Str;
  *
  * @author  hanmeimei
  */
+
 class Category extends Base
 {
+
+    /**
+     * 一对多关联文章
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 
     public function getUrlAttribute($value)
     {
@@ -25,7 +35,7 @@ class Category extends Base
         if (Str::isTrue(config('bjyblog.seo.use_sulg'))) {
             $parameters[] = $this->slug;
         }
-        return url('tag',$parameters);
+        return url('category',$parameters);
     }
 
 

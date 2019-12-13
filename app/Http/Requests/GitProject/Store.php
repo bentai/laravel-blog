@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Nav;
+namespace App\Http\Requests\GitProject;
 
 use Illuminate\Foundation\Http\FormRequest;
 

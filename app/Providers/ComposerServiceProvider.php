@@ -11,6 +11,7 @@ use App\Models\Nav;
 use App\Models\Note;
 use App\Models\SocialiteUser;
 use App\Models\Tag;
+use App\Models\GitProject;
 use Illuminate\Support\ServiceProvider;
 
 use Exception;
@@ -45,6 +46,12 @@ class ComposerServiceProvider extends ServiceProvider
 //        $data = $config->toArray();
 //        $data['backup.backup.destination.disks'] = [];
 //        dd($data['backup.backup.destination.disks']);
+        // 开源项目数据
+        view()->composer(['layouts/home', 'home/index/git'], function ($view) {
+            $gitProject = GitProject::select('name', 'type')->orderBy('sort')->get();
+            // 分配数据
+            $view->with(compact('gitProject'));
+        });
         //分配前台初始数据
         view()->composer('layouts/home', function ($view) {
             //分类

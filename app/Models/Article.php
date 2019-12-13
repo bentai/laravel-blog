@@ -3,6 +3,7 @@
 namespace App\Models;
 use Laravel\Scout\Searchable;
 use DB;
+use Str;
 class Article extends Base
 {
     use Searchable;
@@ -60,7 +61,7 @@ class Article extends Base
 
 //    public function search
 
-    public  function getLists()
+    public function getLists()
     {
         $wd = request()->input('wd', '')?: '';
         //获取查询id
@@ -127,6 +128,15 @@ class Article extends Base
         }
 
         return $cover ?? 'uploads/article/default.jpg';
+    }
+
+    public function getUrlAttribute($value)
+    {
+        $parameters = [$this->id];
+        if (Str::isTrue(config('bjyblog.seo.use_sulg'))) {
+            $parameters[] = $this->slug;
+        }
+        return url('article',$parameters);
     }
 
 
