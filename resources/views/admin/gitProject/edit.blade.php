@@ -17,6 +17,7 @@
     </ul>
     <form class="form-inline " action="{{ url('admin/gitProject/update', [$data->id]) }}" method="post">
         {{ csrf_field() }}
+
         <table class="table table-striped table-bordered table-hover">
             <tr>
                 <th>{{ __('Type') }}</th>

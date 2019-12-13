@@ -33,6 +33,7 @@ class Article extends Base
     }
 
 
+
     /**
      * 过滤描述中的换行。
      *

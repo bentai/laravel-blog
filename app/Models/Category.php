@@ -2,7 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-
+use Str;
 /**
  * Class Category
  *
@@ -18,6 +18,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Category extends Base
 {
+
+    public function getUrlAttribute($value)
+    {
+        $parameters = [$this->id];
+        if (Str::isTrue(config('bjyblog.seo.use_sulg'))) {
+            $parameters[] = $this->slug;
+        }
+        return url('tag',$parameters);
+    }
+
+
 
 
 
