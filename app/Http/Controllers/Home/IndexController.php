@@ -11,11 +11,13 @@ use App\Models\Comment;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Cache;
+use Illuminate\Support\Facades\URL;
 class IndexController extends Controller
 {
 
     public function index()
     {
+        dd(URL::signedRoute('home.git', ['user' => 1]));
         // 获取文章列表数据
         $articles = Article::select(
             'id', 'category_id', 'title',
@@ -140,5 +142,32 @@ class IndexController extends Controller
             'tagName' => $tag->name,
             'title' => $tag->name,
         ]);
+    }
+
+    public function search(Request $request, Article $articleModel)
+    {
+        $wd = $request->input('wd');
+        $ids = $articleModel::searchArticleGetId($wd);
+
+        $article = $articleModel::select('id', 'category_id', 'title',
+            'author', 'description', 'cover',
+            'is_top', 'created_at')
+            ->whereIn('id', $ids)
+            ->with(['category', 'tag'])
+            ->orderBy('is_top', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        $head = [
+            'title'       => $wd,
+            'keywords'    => '',
+            'description' => '',
+        ];
+        return response()->view('home.index.index', [
+            'category_id' => 'index',
+            'articles'     => $article,
+            'tagName'     => '',
+            'title'       => $wd,
+            'head'        => $head
+        ])->header('X-Robots-Tag', 'noindex');
     }
 }

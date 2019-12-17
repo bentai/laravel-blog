@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.7.0 on 2019-12-13 08:19:56.
+ * Generated for Laravel 6.7.0 on 2019-12-14 03:34:51.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -15069,6 +15069,45 @@ namespace Facade\Ignition\Facades {
  
 }
 
+namespace Mews\Purifier\Facades { 
+
+    /**
+     * 
+     *
+     * @see \Mews\Purifier
+     */ 
+    class Purifier {
+        
+        /**
+         * 
+         *
+         * @param $dirty
+         * @param null $config
+         * @return mixed 
+         * @static 
+         */ 
+        public static function clean($dirty, $config = null)
+        {
+                        /** @var \Mews\Purifier\Purifier $instance */
+                        return $instance->clean($dirty, $config);
+        }
+        
+        /**
+         * Get HTMLPurifier instance.
+         *
+         * @return \HTMLPurifier 
+         * @static 
+         */ 
+        public static function getInstance()
+        {
+                        /** @var \Mews\Purifier\Purifier $instance */
+                        return $instance->getInstance();
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -17934,6 +17973,8 @@ namespace  {
     class Markdown extends \GrahamCampbell\Markdown\Facades\Markdown {}
 
     class Flare extends \Facade\Ignition\Facades\Flare {}
+
+    class Purifier extends \Mews\Purifier\Facades\Purifier {}
  
 }
 

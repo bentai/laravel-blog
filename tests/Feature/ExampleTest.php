@@ -18,4 +18,10 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function it_goes_to_a_simple_url()
+    {
+        $this->get('/')->assertSee('123');
+    }
+
 }

@@ -23,7 +23,7 @@ class Tag extends Base
     public function getArticlesCountAttribute()
     {
 //        $parameters = [$this->id];
-        return $this->with('article')->where(['id'=>$this->id])->count('id');
+        return $this->with('article')->count('id');
     }
     //获取前台链接
     public function getUrlAttribute()
