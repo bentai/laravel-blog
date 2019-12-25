@@ -4,6 +4,7 @@
 Route::namespace('Home')->group(function () {
     // 首页
     Route::get('/', 'IndexController@index');
+
     // 文章
     Route::get('article/{id}','IndexController@article');
     // 分类列表
@@ -14,7 +15,8 @@ Route::namespace('Home')->group(function () {
     Route::get('git','IndexController@git');
     // 标签列表
     Route::get('tag/{id}','IndexController@tag');
-
+    // search
+    Route::get('search','IndexController@search');
 });
 
 // Auth

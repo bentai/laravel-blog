@@ -17,7 +17,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        dd(URL::signedRoute('home.git', ['user' => 1]));
+//        dd(URL::signedRoute('home.git', ['user' => 1]));
         // 获取文章列表数据
         $articles = Article::select(
             'id', 'category_id', 'title',
