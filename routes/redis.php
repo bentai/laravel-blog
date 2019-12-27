@@ -32,3 +32,8 @@ Route::prefix('list')->group(function () {
 Route::prefix('set')->group(function () {
     Route::get('/', 'SetController@index');
 });
+
+// 有序集合类型 ZSet
+Route::prefix('zset')->group(function () {
+    Route::get('/', 'ZSetController@index');
+});
